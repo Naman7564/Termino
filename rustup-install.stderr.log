@@ -1,0 +1,13 @@
+warn: it looks like you have an existing rustup settings file at:
+warn: C:\Users\NAMAN\.rustup\settings.toml
+warn: installing msvc toolchain without its prerequisites
+info: profile set to minimal
+info: setting default host tuple to x86_64-pc-windows-msvc
+warn: Updating existing toolchain, profile choice will be ignored
+info: syncing channel updates for stable-x86_64-pc-windows-msvc
+info: latest update on 2026-11-12 for version 1.100.0 (0ef1bc386 2026-11-09)
+info: removing previous version of component cargo
+info: removing previous version of component rust-std
+info: removing previous version of component rustc
+info: downloading 3 components
+info: default toolchain set to stable-x86_64-pc-windows-msvc

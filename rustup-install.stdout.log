@@ -1,0 +1,9 @@
+
+  stable-x86_64-pc-windows-msvc updated - rustc 1.100.0 (0ef1bc386 2026-11-09) (from rustc 1.91.1 (ed61e7d7e 2025-11-07))
+
+
+Rust is installed now. Great!
+
+To get started you need Cargo's bin directory (%USERPROFILE%\.cargo\bin) in 
+your PATH
+environment variable. This has not been done automatically.

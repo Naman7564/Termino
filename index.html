@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#141729" />
+    <meta name="description" content="A quiet, local-first workspace for managing your terminal hosts." />
+    <title>Termino</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%231d2033'/%3E%3Cpath d='M11 12h18v4H11zm0 8h11v4H11zm0 8h18v4H11z' fill='white'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <div class="app-frame">
+      <header class="topbar">
+        <button class="icon-button menu-toggle" id="menu-toggle" type="button" aria-label="Toggle sidebar" aria-expanded="true">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14" /></svg>
+        </button>
+        <button class="vault-button" type="button" aria-label="Current vault: Personal">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 5.5h11A1.5 1.5 0 0 1 17 7v8.5H3V7a1.5 1.5 0 0 1 1.5-1.5Z" /><path d="M7 5.5V4h6v1.5M7 10h.01M10 10h.01M13 10h.01M7 13h.01M10 13h.01M13 13h.01" /></svg>
+          <span>Vaults</span>
+          <span class="vault-chevron"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 8 4 4 4-4" /></svg></span>
+        </button>
+        <button class="top-tab" type="button" data-nav="SFTP">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2.5 5.5h6l2 2h7v8H2.5z" /><path d="M5.5 10.5v3m3-3v3m3-3v3m3-3v3" /></svg>
+          <span>SFTP</span>
+        </button>
+        <button class="icon-button top-add" id="top-add" type="button" aria-label="New tab">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12" /></svg>
+        </button>
+        <div class="topbar-spacer"></div>
+        <button class="icon-button quiet-icon" type="button" aria-label="Notifications"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M15 8a5 5 0 0 0-10 0c0 5-2 5.5-2 7h14c0-1.5-2-2-2-7Zm-7 9h4" /></svg></button>
+        <button class="window-control minimize" type="button" aria-label="Minimize"></button>
+        <button class="window-control restore" type="button" aria-label="Restore"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="6" y="6" width="10" height="10" rx="1.5"/><path d="M4 12V4h8"/></svg></button>
+        <button class="window-control close-window" type="button" aria-label="Close"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 6 8 8m0-8-8 8"/></svg></button>
+      </header>
+
+      <div class="workspace">
+        <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+          <nav class="nav-list">
+            <button class="nav-item is-active" type="button" data-nav="Hosts" aria-current="page"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="4" width="14" height="12" rx="2"/><path d="M6 7h2v2H6zm0 4h2v2H6zm5-4h3m-3 4h3m-3 2h3"/></svg><span>Hosts</span></button>
+            <button class="nav-item" type="button" data-nav="Keychain"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8" cy="7" r="3"/><path d="M8 10v7m0-3h3m-3-2h2"/></svg><span>Keychain</span></button>
+            <button class="nav-item" type="button" data-nav="Port Forwarding"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h8V3l6 7-6 7v-3H7a4 4 0 0 1-4-4z"/></svg><span>Port Forwarding</span></button>
+            <button class="nav-item" type="button" data-nav="Snippets"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 5-4 5 4 5m8-10 4 5-4 5m-2-12-4 14"/></svg><span>Snippets</span></button>
+            <button class="nav-item" type="button" data-nav="Known Hosts"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 16V9a7 7 0 0 1 14 0v7m-10 0v-5a3 3 0 1 1 6 0v5m-3 0v-2"/></svg><span>Known Hosts</span></button>
+            <button class="nav-item" type="button" data-nav="Logs"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M10 6v4l2.5 2"/></svg><span>Logs</span></button>
+          </nav>
+          <button class="settings-link" type="button" data-nav="Settings"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M8 2.8h4l.5 2a6 6 0 0 1 1.4.8l2-.7 2 3.4-1.5 1.5v1.6l1.5 1.5-2 3.4-2-.7a6 6 0 0 1-1.4.8l-.5 2H8l-.5-2a6 6 0 0 1-1.4-.8l-2 .7-2-3.4 1.5-1.5v-1.6L2.1 8.3l2-3.4 2 .7a6 6 0 0 1 1.4-.8z" transform="translate(0 -0.7) scale(.95)"/><circle cx="10" cy="10" r="2.5"/></svg><span>Settings</span></button>
+        </aside>
+
+        <main class="main-area" id="main-area">
+          <section class="hosts-view" id="hosts-view" aria-label="Hosts">
+            <form class="search-row" id="search-form" role="search">
+              <label class="visually-hidden" for="host-search">Find a host or SSH user at hostname</label>
+              <input id="host-search" name="q" autocomplete="off" placeholder="Find a host or ssh user@hostname…" />
+              <button class="connect-search" id="search-connect" type="submit" disabled>Connect</button>
+            </form>
+
+            <div class="action-row">
+              <div class="action-group">
+                <button class="primary-action" id="new-host" type="button"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12" /></svg><span>New host</span></button>
+                <button class="action-chevron" id="new-host-menu" type="button" aria-label="More host actions"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 8 4 4 4-4" /></svg></button>
+              </div>
+              <button class="text-action" id="local-terminal" type="button"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4" width="15" height="12" rx="2"/><path d="m6 8 2 2-2 2m4 0h4"/></svg><span>Terminal</span></button>
+              <button class="text-action" type="button" data-nav="Serial"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="5" width="14" height="10" rx="3"/><path d="M6 8v4m3-4v4m3-4v4m3-4v4"/></svg><span>Serial</span></button>
+              <div class="action-spacer"></div>
+              <button class="icon-button view-toggle" type="button" aria-label="Grid view" aria-pressed="true"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="3" width="5" height="5" rx="1"/><rect x="12" y="3" width="5" height="5" rx="1"/><rect x="3" y="12" width="5" height="5" rx="1"/><rect x="12" y="12" width="5" height="5" rx="1"/></svg></button>
+              <button class="icon-button" type="button" aria-label="Tags"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 4h7l7 7-6 6-8-8z"/><circle cx="7" cy="8" r="1"/></svg></button>
+              <button class="icon-button" type="button" aria-label="Keyboard shortcuts"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4" width="15" height="12" rx="2"/><path d="M5 7h.01M8 7h.01M11 7h.01M14 7h.01M5 10h.01M8 10h.01M11 10h.01M14 10h.01M6 13h8"/></svg></button>
+              <button class="profile-button" type="button" aria-label="Profile menu"><span class="profile-initial">T</span><span class="profile-plus"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg></span></button>
+            </div>
+
+            <div class="folder-strip" id="folder-strip" aria-label="Host folders" hidden></div>
+
+            <div class="hosts-content" id="hosts-content">
+              <div class="section-heading"><h1>Hosts</h1><span class="host-count" id="host-count"></span></div>
+              <div class="host-grid" id="host-grid" aria-live="polite"></div>
+              <div class="host-groups" id="host-groups" aria-live="polite"></div>
+              <div class="empty-search" id="empty-search" hidden><span>No hosts match that search.</span><button type="button" class="create-from-search" id="create-from-search">New host</button></div>
+              <div class="no-hosts" id="no-hosts" hidden><span class="empty-icon" aria-hidden="true"><svg viewBox="0 0 20 20"><rect x="2.5" y="4" width="15" height="12" rx="2"/><path d="M6 8h2v2H6zm0 3.5h2v2H6zm5-3.5h4m-4 3.5h4"/></svg></span><h2>No hosts yet</h2><p>Add a connection profile to keep your SSH hosts on this device.</p><button class="primary-action no-host-action" type="button" id="empty-new-host"><svg viewBox="0 0 20 20"><path d="M10 4v12M4 10h12"/></svg>New host</button></div>
+            </div>
+          </section>
+
+          <section class="generic-view" id="generic-view" hidden>
+            <div class="empty-state">
+              <span class="empty-icon" id="empty-icon" aria-hidden="true"></span>
+              <h1 id="view-title"></h1>
+              <p id="view-description"></p>
+              <button class="primary-action empty-action" id="empty-action" type="button" hidden></button>
+            </div>
+          </section>
+        </main>
+      </div>
+      <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+      <dialog class="host-dialog" id="host-dialog" aria-labelledby="host-dialog-title">
+        <form class="host-form" id="host-form">
+          <div class="dialog-heading"><div><h2 id="host-dialog-title">New host</h2><p>Save a connection profile on this device.</p></div><button class="icon-button dialog-close" id="close-host-dialog" type="button" aria-label="Close">×</button></div>
+          <div class="form-grid">
+            <label class="form-field form-span" for="host-label">Label<input id="host-label" name="label" maxlength="80" placeholder="My server" required autocomplete="off" /></label>
+            <label class="form-field form-span" for="host-hostname">Hostname or IP address<input id="host-hostname" name="hostname" maxlength="253" placeholder="server.example.com" required autocomplete="off" spellcheck="false" /></label>
+            <label class="form-field" for="host-port">Port<input id="host-port" name="port" inputmode="numeric" type="number" min="1" max="65535" value="22" required /></label>
+            <label class="form-field" for="host-username">Username<input id="host-username" name="username" maxlength="128" placeholder="ubuntu" required autocomplete="off" spellcheck="false" /></label>
+            <label class="form-field form-span" for="host-authentication">Authentication method<select id="host-authentication" name="authentication"><option value="key">SSH key (not implemented yet)</option><option value="password">Password (not implemented yet)</option></select><span class="field-hint">Choose a preference for now. This version never collects or saves passwords or private keys.</span></label>
+            <label class="form-field form-span" for="host-folder">Folder <span class="optional-label">Optional</span><input id="host-folder" name="folder" maxlength="80" placeholder="Development" autocomplete="off" /></label>
+          </div>
+          <p class="form-error" id="host-form-error" role="alert" hidden></p>
+          <div class="dialog-actions"><button class="danger-action" id="delete-host" type="button" hidden>Delete</button><button class="secondary-action" id="cancel-host" type="button">Cancel</button><button class="primary-action dialog-connect" id="connect-host" type="button">Connect</button><button class="primary-action dialog-save" id="save-host" type="submit">Save host</button></div>
+        </form>
+      </dialog>
+    </div>
+  </body>
+</html>
